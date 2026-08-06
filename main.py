@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import ttk
+
+from recursos import *
 from recursos.menu_bar import * # importa MenuBar
 
 class MainApp(object):
@@ -10,13 +12,18 @@ class MainApp(object):
 		self.ventana.geometry('640x480')
 		self.ventana.title('Organizer')
 		self.ventana.minsize(320, 240)
-		self.ventana['menu'] = MenuBar(self.ventana)
 
-		
-		
-		
+		# inicializamos la ventana
+		self.ventana['menu'] = MenuBar(self)
+
+		# agregamos los accesos rápidos
+		self.ventana.bind('<F1>', lambda x:self.mostrar_ayuda())
+
+		# inicializamos el loop principal de la ventana
 		self.ventana.mainloop()
 
+	def mostrar_ayuda(self):
+		Ayuda()
 		
 
 	
