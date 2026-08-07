@@ -32,7 +32,8 @@ class MenuBar(Menu):
 		# ----------------------------------------------------
 		sub_menu_ayuda = Menu(self)
 		sub_menu_ayuda.add_command(label = 'Acerca de',
-								   command = lambda: parent.mostrar_ayuda())
+								   command = lambda: parent.mostrar_ayuda(),
+								   accelerator = 'F1')
 
 		self.add_cascade(menu = sub_menu_ayuda, label = 'Ayuda')
 		# ----------------------------------------------------
