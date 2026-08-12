@@ -18,6 +18,8 @@ class MainApp(Tk):
 
 		# agregamos los accesos rápidos
 		self.bind('<F1>', lambda x:self.mostrar_ayuda())
+		self.bind('<Control-q>', lambda x:self.destroy())
+		self.bind('<Control-Q>', lambda x:self.destroy())
 
 		# inicializamos el loop principal de la ventana
 		self.mainloop()

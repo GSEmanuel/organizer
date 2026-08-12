@@ -5,27 +5,39 @@ __all__ = ['MenuBar']
 
 class MenuBar(Menu):
 	def __init__(self, parent):
-		super(MenuBar, self).__init__(parent.ventana)
-		parent.ventana.option_add('*tearOff', False)
+		super(MenuBar, self).__init__(parent)
+		parent.option_add('*tearOff', False)
 
 		# ----------------------------------------------------
 		# -------------------- menu archivo ------------------
 		# ----------------------------------------------------
 		sub_menu_principal = Menu(self)
-		sub_menu_principal.add_command(label = 'Mostrar punto de venta',
-									   underline = 17,
+		sub_menu_principal.add_command(label = 'Abrir carpeta',
+									   underline = 0,
 									   # command = lambda: parent.mostrar_frame(parent.frame_punto_venta),
-									   # accelerator = 'Shift + V'
+									   accelerator = 'Ctrl + A',
 									   )
 
-		sub_menu_principal.add_command(label = 'Mostrar inventario',
+		sub_menu_principal.add_command(label = 'Cambiar carpeta',
 									  # command = lambda: parent.mostrar_frame(parent.frame_inventario)
 									  )
-		sub_menu_principal.add_command(label = 'Mostrar resumen')
+		sub_menu_principal.add_command(label = 'Crear respaldos')
 
-		self.add_cascade(menu = sub_menu_principal, label = 'Creampie')
+		sub_menu_principal.add_command(label = 'Salir',
+									   command = parent.destroy,
+									   accelerator = 'Ctrl + Q')
+		# sub_menu_principal.add_command(Label = '')
+
+		self.add_cascade(menu = sub_menu_principal, label = 'Archivo') # <-- Primera opcion Ventana
+
 		# ----------------------------------------------------
-
+		# ------------------ Menu ajustes --------------------
+		# ----------------------------------------------------
+		sub_menu_ajustes = Menu(self)
+		sub_menu_ajustes.add_command(label = 'Preferencias')
+		sub_menu_ajustes.add_command(label = 'Parámetros')
+		
+		self.add_cascade(menu = sub_menu_ajustes, label = 'Ajustes')
 
 		# ----------------------------------------------------
 		# -------------------- menu ayuda --------------------
@@ -35,8 +47,6 @@ class MenuBar(Menu):
 								   command = lambda: parent.mostrar_ayuda(),
 								   accelerator = 'F1')
 
-		self.add_cascade(menu = sub_menu_ayuda, label = 'Ayuda')
+		self.add_cascade(menu = sub_menu_ayuda, label = 'Ayuda') # <-- Segunda Opcion ventana
 		# ----------------------------------------------------
-
-
 
