@@ -4,23 +4,23 @@ from tkinter import ttk
 from recursos import *
 from recursos.menu_bar import * # importa MenuBar
 
-class MainApp(object):
+class MainApp(Tk):
 	def __init__(self):
-
+		super(MainApp,self).__init__()
 		# --------------------- inicializacion de la ventana ---------------------
-		self.ventana = Tk()
-		self.ventana.geometry('640x480')
-		self.ventana.title('Organizer')
-		self.ventana.minsize(320, 240)
+		# self.ventana = Tk()
+		self.geometry('640x480')
+		self.title('Organizer')
+		self.minsize(320, 240)
 
 		# inicializamos la ventana
-		self.ventana['menu'] = MenuBar(self)
+		self['menu'] = MenuBar(self)
 
 		# agregamos los accesos rápidos
-		self.ventana.bind('<F1>', lambda x:self.mostrar_ayuda())
+		self.bind('<F1>', lambda x:self.mostrar_ayuda())
 
 		# inicializamos el loop principal de la ventana
-		self.ventana.mainloop()
+		self.mainloop()
 
 	def mostrar_ayuda(self):
 		Ayuda()
