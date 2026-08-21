@@ -3,7 +3,8 @@ from tkinter import ttk
 
 from recursos import *
 from recursos.menu_bar import * # importa MenuBar
-# from recursos.frame_ventana import * # importa FramePrincipal
+from recursos.frame_ventana import * # importa FramePrincipal
+from recursos.frame_comparar import * # importa FrameComparar
 class MainApp(Tk):
 	def __init__(self):
 		super(MainApp,self).__init__()
@@ -28,10 +29,10 @@ class MainApp(Tk):
 
 		# ruta_carpeta.grid(row = 0, column = 0)
 
-		boton_principal = ttk.Button(self, text='Principal')
+		boton_principal = ttk.Button(self, text='Principal', command = lambda: self.mostrar_frame(self.frame_principal))
 		boton_principal.grid(row = 0, column = 0, sticky = 'ew')
 
-		boton_comparar = ttk.Button(self, text = 'Comparar/fusionar')
+		boton_comparar = ttk.Button(self, text = 'Comparar/fusionar', command = lambda: self.mostrar_frame(self.frame_comparar))
 		boton_comparar.grid(row = 1, column = 0, sticky = 'ew')
 
 		boton_respaldos = ttk.Button(self, text = 'Respaldos')
@@ -45,8 +46,13 @@ class MainApp(Tk):
 		self.rowconfigure(1, weight = 1)
 		self.rowconfigure(2, weight = 1)
 
-		self.mainloop()
+		self.frame_principal = FramePrincipal(self)
+		self.frame_principal.grid(row = 0, column = 1)
 
+		self.frame_comparar = FrameComparar(self)
+		self.frame_comparar.grid(row = 0, column = 1)
+
+		self.mainloop()
 
 	def mostrar_ayuda(self):
 		Ayuda()
